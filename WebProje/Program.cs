@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using WebProje.EfCore;
@@ -9,11 +12,20 @@ using WebProje.Services.Abstract;
 var builder = WebApplication.CreateBuilder(args);
 var conStr = builder.Configuration.GetConnectionString("Default");
 
+var requireAuthorizePolicy =new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
 builder.Services.AddDbContext<WebDbContext>(x =>
     x.UseSqlServer(conStr));
 // MVC ve Razor sayfalar için gerekli servisleri ekleyelim
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<WebDbContext>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(opt =>
+{
+    opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+});
+builder.Services.ConfigureApplicationCookie(opts =>
+{
+    opts.LoginPath = "/Login/Index/";
+});
 builder.Services.AddScoped<IUrunService, UrunService>();
 builder.Services.AddScoped<IKategoriService, KategoriService>();
 
