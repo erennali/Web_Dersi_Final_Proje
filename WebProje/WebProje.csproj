@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\css\styles.css" />
+      <None Include="wwwroot\js\scripts.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="Web\dist\js\scripts.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Web\dist\css\styles.css">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\about-img.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\client1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\client2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f3.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f4.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f5.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f6.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f7.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f8.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\f9.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\favicon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\hero-bg.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\o1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\feane-1.0.0\images\o2.jpg" />
+      <_ContentIncludedByDefault Remove="Views\Kategori\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Marka\Kategoriler.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Register\Index.cshtml" />
+    </ItemGroup>
+
+</Project>

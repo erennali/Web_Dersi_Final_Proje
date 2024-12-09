@@ -1,0 +1,39 @@
+@model Kullanici
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Layout dosyasının yolu doğru olmalı
+}
+
+<div class="text-center">
+    <h1 class="display-4">Merhaba</h1>
+</div>
+
+<div>@ViewBag.ornekKayit.KullaniciAd</div>
+<div>@ViewBag.ornekKayit.KullaniciSoyad</div>
+<div>@ViewBag.ornekKayit.Email</div>
+<div>@ViewBag.ornekKayit.Sifre</div>
+
+<form asp-action="Kayit" asp-controller="Home">
+    <input type="text" class="form-control" asp-for="KullaniciAd" placeholder="Adınızı Giriniz">
+    <span asp-validation-for="KullaniciAd" style="color: red"></span>
+    <br/>
+    <input type="text" class="form-control" asp-for="KullaniciSoyad" placeholder="Soyadınızı Giriniz">
+    <span asp-validation-for="KullaniciSoyad" style="color: red"></span>
+    <br/>
+    <input type="email" class="form-control" asp-for="Email" placeholder="E-Postanızı Giriniz">
+    <span asp-validation-for="Email" style="color: red"></span>
+    <br/>
+    <input type="password" class="form-control" asp-for="Sifre" placeholder="Şifre Giriniz">
+    <span asp-validation-for="Sifre" style="color: red"></span>
+    <br/>
+    <label>İsim Seçin:</label>
+    <select asp-items="ViewBag.sec" class="form-control"></select>
+    <input type="submit" class="btn btn-success" value="Kaydet"/>
+    
+    
+</form>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

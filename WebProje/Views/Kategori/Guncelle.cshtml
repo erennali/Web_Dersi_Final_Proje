@@ -1,0 +1,25 @@
+@model Kategori
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Kategori Güncelleme Sayfası</h2>
+<br />
+@using (Html.BeginForm("Guncelle", "Kategori", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Kategori Ad")
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+    @* @Html.LabelFor(x => x.Kategori.KategoriID) *@
+    @* @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" }) *@
+    @* @#1#Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })#1# *@
+    @* <br /> *@
+    @* @Html.LabelFor(x => x.Durum) *@
+    @* @Html.TextBoxFor(x => x.Durum, new { @class = "form-control" }) *@
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+}

@@ -1,0 +1,127 @@
+# Rider için yapılandırma dosyaları
+.idea/
+*.sln.iml
+
+# ASP.NET Core için genel hariç tutulacaklar
+bin/
+obj/
+*.user
+*.rsuser
+*.suo
+*.sln.docstates
+*.swp
+.vscode/
+
+# Paket yönetim dosyaları
+*.nupkg
+*.nuspec
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Log dosyaları
+*.log
+*.tlog
+*.ide
+*.ide.ide
+
+# Temporary dosyalar
+*.tmp
+*.temp
+*.pid
+*.log
+
+# Windows spesifik dosyalar
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# MacOS spesifik dosyalar
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Rider çalışma alanı ve yapılandırmaları
+.idea/
+.idea_modules/
+*.iml
+/out/
+
+# Resharper ve Rider Cache Dosyaları
+_ReSharper*/
+*.DotSettings.user
+
+# ASP.NET Core runtime, publish ve config dosyaları
+appsettings*.json
+wwwroot/dist/
+wwwroot/dist/*
+wwwroot/uploads/
+
+# Kullanıcı tarafından oluşturulan geçici dosyalar
+*.vs# Rider için yapılandırma dosyaları
+.idea/
+*.sln.iml
+
+# ASP.NET Core için genel hariç tutulacaklar
+bin/
+obj/
+*.user
+*.rsuser
+*.suo
+*.sln.docstates
+*.swp
+.vscode/
+
+# Paket yönetim dosyaları
+*.nupkg
+*.nuspec
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Log dosyaları
+*.log
+*.tlog
+*.ide
+*.ide.ide
+
+# Temporary dosyalar
+*.tmp
+*.temp
+*.pid
+*.log
+
+# Windows spesifik dosyalar
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# MacOS spesifik dosyalar
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Rider çalışma alanı ve yapılandırmaları
+.idea/
+.idea_modules/
+*.iml
+/out/
+
+# Resharper ve Rider Cache Dosyaları
+_ReSharper*/
+*.DotSettings.user
+
+# ASP.NET Core runtime, publish ve config dosyaları
+appsettings*.json
+wwwroot/dist/
+wwwroot/dist/*
+wwwroot/uploads/
+
+# Kullanıcı tarafından oluşturulan geçici dosyalar
+*.vs

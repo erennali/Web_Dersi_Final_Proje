@@ -1,0 +1,32 @@
+@model List<Kategori>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<h1>Kategoriler</h1>
+
+<a class="btn btn-primary" asp-controller="Kategori" asp-action="Ekle" >Yeni Kategori Ekle</a>
+@* @Html.ActionLink() *@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Ad</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var kategori in Model)
+    {
+        <tr>
+            <td>@kategori.Ad</td>
+            <td>
+                <a class="btn btn-warning" asp-action="Guncelle" asp-controller="Kategori"
+                   asp-route-id="@kategori.Id">Güncelle</a>
+                <a class="btn btn-danger" asp-action="Sil" asp-controller="Kategori"
+                   asp-route-id="@kategori.Id">Sil</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

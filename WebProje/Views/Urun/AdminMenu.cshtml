@@ -1,0 +1,43 @@
+@model IEnumerable<WebProje.Models.Urun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var kategoriAdlari = ViewBag.KategoriAdlari as Dictionary<int, string>;
+}
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>GUID ID</th>
+        <th>GÖRSEL</th>
+        <th>ÜRÜN</th>
+        <th>AÇIKLAMA</th>
+        <th>FİYAT</th>
+        <th>KATEGORİ</th>
+        <th>GÖRSEL URL</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.Id</td>
+            <td><img src="@u.ImageUrl" style="max-width: 200px; max-height: 200px" class="menu-item-image" /></td>
+            <td>@u.Name</td>
+            <td>@u.Description</td>
+            <td>@u.Price</td>
+            <td>@kategoriAdlari?[u.KategoriId]</td>
+            <td style="max-width: 200px; word-wrap: break-word; overflow-wrap: break-word;">@u.ImageUrl</td>
+            @* <td>@u.SatisFiyat</td> *@
+            @* <td>@u.Kategori.KategoriAd</td> *@
+            @* <td>@u.UrunGorsel</td> *@
+            <td>
+                <a href="/Urun/UrunSil/@u.Id" class="btn btn-danger">Sil</a>
+            </td>
+            <td>
+                <a href="/Urun/UrunGetir/@u.Id" class="btn btn-success">Güncelle</a>
+            </td>
+                   
+        </tr>
+    }
+</table>
+<a href="/Urun/Ekle/" class="btn btn-info">Yeni Ürün</a>

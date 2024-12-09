@@ -1,0 +1,36 @@
+@model WebProje.Models.Urun
+@{
+    ViewBag.Title = "YeniUrun";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Yeni Ürün Sayfası</h2>
+<br />
+<form class="form-group" method="post">
+    <br />
+    @Html.Label("Ad")
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br />
+    @Html.Label("Açıklama")
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+    @Html.Label("Fiyat")
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    <br />
+    @Html.Label("Görsel URL")
+    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+    <br />
+    @* @Html.LabelFor(x => x.Kategori.KategoriID) *@
+    @* @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" }) *@
+    @* @#1#Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })#1# *@
+    @* <br /> *@
+    @* @Html.LabelFor(x => x.Durum) *@
+    @* @Html.TextBoxFor(x => x.Durum, new { @class = "form-control" }) *@
+    @* <br /> *@
+    <div class="form-group">
+        <label class="control-label">Kategori</label>
+        <select asp-for="KategoriId" class="form-control" asp-items="ViewBag.Markalar"></select>
+    </div>
+    <br/>
+    <button class="btn btn-primary">Kaydet</button>
+</form>

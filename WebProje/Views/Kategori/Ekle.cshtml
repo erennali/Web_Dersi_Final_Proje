@@ -1,0 +1,23 @@
+@model Kategori
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Kategori ekleme sayfası</h1>
+
+<form asp-action="Ekle" asp-controller="Kategori" method="post">
+
+    @* @Html.LabelFor(x => x.Ad)
+    @Html.TextBoxFor(x => x.Ad, null, new { @class = "form-control" })
+
+    <br /> *@
+
+    <label asp-for="Ad"></label>
+    <input type="text" class="form-control" asp-for="Ad" />
+
+    <br />
+
+    <input type="submit" value="Kaydet" class="btn btn-success" />
+</form>

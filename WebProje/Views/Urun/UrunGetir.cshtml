@@ -1,0 +1,37 @@
+@model WebProje.Models.Urun
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Ürün Güncelleme Sayfası</h2>
+<br />
+@using (Html.BeginForm("UrunGuncelle", "Urun", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Ad")
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br />
+    @Html.Label("Açıklama")
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+    @Html.Label("Fiyat")
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    <br />
+    @Html.Label("Kategori")
+    @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+   
+    <br />
+    
+    @Html.Label("Görsel URL")
+    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+    <br />
+    @* @Html.LabelFor(x => x.Kategori.KategoriID) *@
+    @* @Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" }) *@
+    @* @#1#Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })#1# *@
+    @* <br /> *@
+    @* @Html.LabelFor(x => x.Durum) *@
+    @* @Html.TextBoxFor(x => x.Durum, new { @class = "form-control" }) *@
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+}

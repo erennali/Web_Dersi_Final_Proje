@@ -1,0 +1,22 @@
+@model List<Urun>
+
+@{
+    Layout = "_Layout";  // Eğer layout dosyası kullanıyorsanız.
+}
+
+<div class="menu-container">
+    <h1>Restaurant Menu</h1>
+    <div class="menu-items">
+        @foreach (var item in Model)
+        {
+            <div class="menu-item">
+                <img src="@item.ImageUrl" alt="@item.Name" class="menu-item-image" />
+                <div class="menu-item-info">
+                    <h3>@item.Name</h3>
+                    <p>@item.Description</p>
+                    <span class="menu-item-price">@item.Price.ToString("C")</span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
