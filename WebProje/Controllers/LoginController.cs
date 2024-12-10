@@ -10,10 +10,12 @@ public class LoginController : Controller
 {
     
     private readonly SignInManager<AppUser> _signInManager;
+    private readonly UserManager<AppUser> _userManager;
 
-    public LoginController(SignInManager<AppUser> signInManager)
+    public LoginController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
     {
         _signInManager = signInManager;
+        _userManager = userManager;
     }
 
     // GET
@@ -26,11 +28,26 @@ public class LoginController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(Login login)
     {
+        
         var result = await _signInManager.PasswordSignInAsync(login.Username, login.Password, false, false);
         //ilk false = kullanıcı hatırlansın mı ; ikinci false da kullanıcı şifreyi yanlış girdikçe değer artsın mı db de
         if (result.Succeeded)
         {
-            RedirectToAction("Index", "Kategori");
+            // Kullanıcıyı al
+            var user = await _userManager.FindByNameAsync(login.Username);
+
+            // Kullanıcının rollerini al
+            var roles = await _userManager.GetRolesAsync(user);
+
+            //kullanıcı admin rolündeyse, Admin sayfasına yönlendir
+            if (roles.Contains("Admin"))
+            {
+                return RedirectToAction("AdminMenu", "Urun");
+            }
+            else
+            {
+                return RedirectToAction("Menu", "Home");
+            }
         }
         return View();
     }

@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebProje.Models;
 using WebProje.Services.Abstract;
 
 namespace WebProje.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class KategoriController : Controller
 {
     private IKategoriService _kategoriService;

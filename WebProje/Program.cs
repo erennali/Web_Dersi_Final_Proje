@@ -12,16 +12,19 @@ using WebProje.Services.Abstract;
 var builder = WebApplication.CreateBuilder(args);
 var conStr = builder.Configuration.GetConnectionString("Default");
 
+//tanımladık bunun sayesinde illa bizdn auth isticek
 var requireAuthorizePolicy =new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 
 builder.Services.AddDbContext<WebDbContext>(x =>
     x.UseSqlServer(conStr));
-// MVC ve Razor sayfalar için gerekli servisleri ekleyelim
+// MVC ve Razor sayfalar için gerekli servisler
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<WebDbContext>();
 builder.Services.AddControllersWithViews(opt =>
 {
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
+
+//farklı sayfayı açmaya çalışsak bile auth isticek yönlendircek
 builder.Services.ConfigureApplicationCookie(opts =>
 {
     opts.LoginPath = "/Login/Index/";

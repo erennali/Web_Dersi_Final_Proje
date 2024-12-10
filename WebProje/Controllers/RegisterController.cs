@@ -36,4 +36,36 @@ public class RegisterController : Controller
         }
         return View();
     }
+    
+    [HttpGet]
+    public IActionResult AdminRegister()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> AdminRegister(Register register)
+    {
+        var appUser2 = new AppUser()
+        {
+            Name = register.Name,
+            Surname = register.Surname,
+            Email = register.Mail,
+            UserName = register.Username
+        };
+        var result = await _userManager.CreateAsync(appUser2, register.Password);
+        if (result.Succeeded)
+        {
+            return RedirectToAction("AdminMenu", "Urun");
+        }
+        return View();
+    }
+
+    public async Task<IActionResult> GetAdmins()
+    {
+        // Admin rolüne sahip tüm kullanıcıları almak
+        var users = _userManager.Users.ToList();
+
+        return View(users); 
+    }
 }
