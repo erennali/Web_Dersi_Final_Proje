@@ -1,0 +1,35 @@
+@model IEnumerable<WebProje.Models.AppUser>
+
+@{
+    ViewBag.Title = "Adminler";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Adminler</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Kullanıcı Adı</th>
+        <th>Email</th>
+        <th>Aksiyonlar</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Surname</td>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>
+                <a href="@Url.Action("Edit", "Admin", new { id = user.Id })" class="btn btn-warning">Düzenle</a>
+                <a href="@Url.Action("Delete", "Admin", new { id = user.Id })" class="btn btn-danger">Sil</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

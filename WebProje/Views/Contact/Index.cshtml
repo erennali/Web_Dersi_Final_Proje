@@ -1,0 +1,61 @@
+@model WebProje.Models.Contact
+@{
+    ViewBag.Title = "İletişim";
+    Layout = "_Layout";
+}
+@if (TempData["Mesaj"] != null)
+{
+    <script>
+        alert("@TempData["Mesaj"]");
+    </script>
+}
+
+<br />
+<div class="contact-container" style="display: flex; justify-content: space-between;">
+    <!-- İletişim Başlıkları -->
+    <h1 style="padding-left: 150px">İletişim</h1>
+    <h1 style="padding-right: 220px;">İletişim Formu</h1>
+</div>
+
+<br />
+
+<div class="contact-container" style="display: flex; justify-content: space-between;">
+    <!-- İletişim Bilgileri -->
+    <div class="contact-info" style="flex: 1; padding-right: 20px;">
+        <h6>
+            Fethiye/Muğla<br /><br />
+            E Posta: eren_ali_koca@hotmail.com<br /><br />
+            Tel: 0 505 091 09 00
+        </h6>
+    </div>
+
+    <!-- İletişim Formu -->
+    <div class="contact-form" style="flex: 1; padding-left: 20px;">
+        <form class="form-group" method="post">
+            <br/>
+            @Html.Label("Ad Soyad")
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            <span asp-validation-for="Name" style="color:red"></span>
+            <br/>
+            @Html.Label("Telefon")
+            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @oninput = "this.value = this.value.replace(/[^0-9]/g, '')" })
+            @* bu oninput klavyeden sadee sayı girebilmek için *@
+            <span asp-validation-for="Phone" style="color:red"></span>
+            <br/>
+            @Html.Label("E Posta")
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            <span asp-validation-for="Email" style="color:red"></span>
+            <br/>
+            @Html.Label("Konu")
+            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+            <span asp-validation-for="Subject" style="color:red"></span>
+            <br/>
+            @Html.Label("Mesajınız")
+            @Html.TextAreaFor(x => x.Message, new { @class = "form-control", rows = 5, cols = 50 })
+
+            <span asp-validation-for="Message" style="color:red"></span>
+            <br/>
+            <button class="btn btn-primary">Gönder</button>
+        </form>
+    </div>
+</div>

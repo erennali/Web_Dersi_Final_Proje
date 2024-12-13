@@ -10,6 +10,8 @@ public class WebDbContext : IdentityDbContext<AppUser , AppRole, Guid>
     public DbSet<Urun> Uruns { get; set; }
     
     public DbSet<Kategori> Kategoriler { get; set; }
+    
+    public DbSet<Contact> Contacts { get; set; }
 
     public WebDbContext(DbContextOptions options) : base(options)
     {

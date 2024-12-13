@@ -5,7 +5,18 @@
 }
 
 <div class="menu-container">
-    <h1>Restaurant Menu</h1>
+    <h1>Menü</h1>
+
+    <!-- Kategori Seçimi -->
+    <div class="category-buttons">
+        <button class="btn btn-secondary" onclick="filterByCategory('')">Tüm Kategoriler</button>
+        @foreach (var category in ViewData["Categories"] as SelectList)
+        {
+            <button class="btn btn-secondary" onclick="filterByCategory('@category.Value')">@category.Text</button>
+        }
+    </div>
+
+    <!-- Menü Elemanları -->
     <div class="menu-items">
         @foreach (var item in Model)
         {
@@ -20,3 +31,10 @@
         }
     </div>
 </div>
+
+<script>
+    function filterByCategory(categoryId) {
+        const url = categoryId ? `@Url.Action("Menu", "Home")?selectedCategory=${categoryId}` : `@Url.Action("Menu", "Home")`;
+        window.location.href = url;
+    }
+</script>

@@ -1,18 +1,19 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebProje.Models;
 
 namespace WebProje.Controllers;
 
 [AllowAnonymous]
-public class LoginController : Controller
+public class AdminController : Controller
 {
     
     private readonly SignInManager<AppUser> _signInManager;
     private readonly UserManager<AppUser> _userManager;
 
-    public LoginController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+    public AdminController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
     {
         _signInManager = signInManager;
         _userManager = userManager;
@@ -46,9 +47,28 @@ public class LoginController : Controller
             }
             else
             {
-                return RedirectToAction("Menu", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         return View();
+    }
+
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GetAdmins()
+    {
+        var admins = new List<AppUser>();
+        var users =await _userManager.Users.ToListAsync();
+        foreach (var user in users)
+        {
+             var roles = await _userManager.GetRolesAsync(user);
+             if (roles.Contains("Admin"))
+             {
+                 admins.Add(user);
+             }
+             
+        }
+       
+        
+        return View(admins);
     }
 }

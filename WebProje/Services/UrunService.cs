@@ -82,4 +82,35 @@ public class UrunService : IUrunService
             .ToDictionaryAsync(k => k.Id, k => k.Ad);
         return kategoriAdlari;
     }
+
+    public List<Urun> GetUrunlerByKategori(int? kategoriId)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Kategorilere göre filtrelenmiş ürünleri al
+    // public List<Urun> GetUrunlerByKategori(int? kategoriId)
+    // {
+    //     var urunler = _webDbContext.Uruns.Include(u => u.KategoriFk).AsQueryable();
+    //
+    //     if (kategoriId.HasValue)
+    //     {
+    //         urunler = urunler.Where(u => u.KategoriId == kategoriId.Value);
+    //     }
+    //
+    //     return urunler.ToList();
+    // }
+    // Kategorilere göre ürünleri filtreleme
+    public List<Urun> GetUrunlerByCategory(string categoryId = null)
+    {
+        var urunler = _webDbContext.Uruns.Include(u => u.KategoriFk).AsQueryable();
+
+        if (!string.IsNullOrEmpty(categoryId))
+        {
+            urunler = urunler.Where(u => u.KategoriId.ToString() == categoryId);
+        }
+
+        return urunler.ToList();
+    }
+    
 }

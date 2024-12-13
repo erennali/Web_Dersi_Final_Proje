@@ -15,11 +15,49 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="SkiaSharp" Version="3.118.0-preview.2.3" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="wwwroot\css\styles.css" />
       <None Include="wwwroot\js\scripts.js" />
+      <None Include="wwwroot\Web\.browserslistrc" />
+      <None Include="wwwroot\Web\.gitignore" />
+      <None Include="wwwroot\Web\.travis.yml" />
+      <None Include="wwwroot\Web\dist\401.html" />
+      <None Include="wwwroot\Web\dist\404.html" />
+      <None Include="wwwroot\Web\dist\500.html" />
+      <None Include="wwwroot\Web\dist\assets\demo\chart-area-demo.js" />
+      <None Include="wwwroot\Web\dist\assets\demo\chart-bar-demo.js" />
+      <None Include="wwwroot\Web\dist\assets\demo\chart-pie-demo.js" />
+      <None Include="wwwroot\Web\dist\assets\demo\datatables-demo.js" />
+      <None Include="wwwroot\Web\dist\assets\img\error-404-monochrome.svg" />
+      <None Include="wwwroot\Web\dist\charts.html" />
+      <None Include="wwwroot\Web\dist\css\1.png" />
+      <None Include="wwwroot\Web\dist\css\styles.css" />
+      <None Include="wwwroot\Web\dist\index.html" />
+      <None Include="wwwroot\Web\dist\js\scripts.js" />
+      <None Include="wwwroot\Web\dist\layout-sidenav-light.html" />
+      <None Include="wwwroot\Web\dist\layout-static.html" />
+      <None Include="wwwroot\Web\dist\login.html" />
+      <None Include="wwwroot\Web\dist\password.html" />
+      <None Include="wwwroot\Web\dist\register.html" />
+      <None Include="wwwroot\Web\dist\tables.html" />
+      <None Include="wwwroot\Web\index.html" />
+      <None Include="wwwroot\Web\LICENSE" />
+      <None Include="wwwroot\Web\README.md" />
+      <None Include="wwwroot\Web\scripts\build-assets.js" />
+      <None Include="wwwroot\Web\scripts\build-pug.js" />
+      <None Include="wwwroot\Web\scripts\build-scripts.js" />
+      <None Include="wwwroot\Web\scripts\build-scss.js" />
+      <None Include="wwwroot\Web\scripts\clean.js" />
+      <None Include="wwwroot\Web\scripts\render-assets.js" />
+      <None Include="wwwroot\Web\scripts\render-pug.js" />
+      <None Include="wwwroot\Web\scripts\render-scripts.js" />
+      <None Include="wwwroot\Web\scripts\render-scss.js" />
+      <None Include="wwwroot\Web\scripts\sb-watch.js" />
+      <None Include="wwwroot\Web\scripts\start-debug.js" />
+      <None Include="wwwroot\Web\scripts\start.js" />
     </ItemGroup>
 
     <ItemGroup>
@@ -55,6 +93,14 @@
       <_ContentIncludedByDefault Remove="Pages\Register\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\AdminRole\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\AdminRole\UserRoleList.cshtml" />
+      <_ContentIncludedByDefault Remove="Web\package-lock.json" />
+      <_ContentIncludedByDefault Remove="Web\package.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="QRCoder">
+        <HintPath>..\..\..\Downloads\QRCoder.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

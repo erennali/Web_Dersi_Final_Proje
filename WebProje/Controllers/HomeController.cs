@@ -3,58 +3,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebProje.EfCore;
 using WebProje.Models;
+using WebProje.Services;
+using WebProje.Services.Abstract;
 
 namespace WebProje.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly WebDbContext _context;
+    private readonly IUrunService _urunService;
+    private readonly IKategoriService _kategoriService;
     
     
 
-    public HomeController(ILogger<HomeController> logger, WebDbContext context)
+    public HomeController(ILogger<HomeController> logger, IUrunService urunService, IKategoriService kategoriService)
     {
-        _context = context;
         _logger = logger;
+        _urunService = urunService;
+        _kategoriService = kategoriService;
     }
 
     public IActionResult Index()
     {
         return View();
     }
-
-    [HttpGet]
-    public IActionResult Kayit()
-    {
-        var ornekKayit = _context.Kullanicilar
-            .OrderByDescending(k => k.KullaniciId)  // ID'ye göre azalan sırada sıralama
-            .FirstOrDefault();  // İlk elemanı al
-        
-        var isimler = new List<string>() { "Eren", "Ali" };
-        ViewData["sec"] = isimler.Select(x => new SelectListItem
-        {
-            Text = x,
-            Value = x
-        }).ToList();
-        ViewBag.ornekKayit = ornekKayit;
-        return View();
-    }
     
-    [HttpPost]
-    public IActionResult Kayit(Kullanici input)
+    public IActionResult Menu(string selectedCategory)
     {
-        
-        _context.Kullanicilar.Add(input);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
-    }
-    
-    public IActionResult Menu()
-    {
-        var menuItems = _context.Uruns.ToList();
+        // Kategorileri al
+        ViewData["Categories"] = new SelectList(_kategoriService.GetTumKategoriler(), "Id", "Ad");
 
-        return View(menuItems);
+        // Ürünleri filtrele
+        var urunler = _urunService.GetUrunlerByCategory(selectedCategory);
+        return View(urunler);
     }
 
     public IActionResult Privacy()

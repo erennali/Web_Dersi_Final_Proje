@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebProje.Models;
@@ -7,6 +8,7 @@ namespace WebProje.Controllers;
 public class RegisterController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
+   
 
     public RegisterController(UserManager<AppUser> userManager)
     {
@@ -32,19 +34,19 @@ public class RegisterController : Controller
         var result = await _userManager.CreateAsync(appUser, register.Password);
         if (result.Succeeded)
         {
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Admin");
         }
         return View();
     }
     
     [HttpGet]
-    public IActionResult AdminRegister()
+    public async Task<IActionResult> UserRegister()
     {
+        
         return View();
     }
-    
     [HttpPost]
-    public async Task<IActionResult> AdminRegister(Register register)
+    public async Task<IActionResult> UserRegister(Register register)
     {
         var appUser2 = new AppUser()
         {
@@ -61,11 +63,12 @@ public class RegisterController : Controller
         return View();
     }
 
-    public async Task<IActionResult> GetAdmins()
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GetUsers()
     {
-        // Admin rolüne sahip tüm kullanıcıları almak
-        var users = _userManager.Users.ToList();
-
+        var users =_userManager.Users.ToList();
         return View(users); 
     }
+
+    
 }

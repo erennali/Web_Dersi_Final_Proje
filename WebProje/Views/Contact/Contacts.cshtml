@@ -1,0 +1,67 @@
+@model IEnumerable<WebProje.Models.Contact>
+@{
+    ViewBag.Title = "title";
+    Layout = "AdminLayout";
+}
+
+<br/>
+<h3>BEKLEYEN FORMLAR</h3>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>AD SOYAD</th>
+        <th>TELEFON</th>
+        <th>E POSTA</th>
+        <th>KONU</th>
+        <th>MESAJ</th>
+        <th>TARİH</th>
+        <th>AKSİYON</th>
+    </tr>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.Id</td>
+            <td>@u.Name</td>
+            <td>@u.Phone</td>
+            <td>@u.Email</td>
+            <td>@u.Subject</td>
+            <td>@u.Message</td>
+            <td>@u.dateTime</td>
+           
+            <td>
+                <a href="/Contact/Solved/@u.Id" class="btn btn-danger">ÇÖZÜLDÜ</a>
+            </td>
+
+        </tr>
+    }
+</table>
+
+<br/>
+<h3>SORUNU ÇÖZÜLEN FORMLAR</h3>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>AD SOYAD</th>
+        <th>TELEFON</th>
+        <th>E POSTA</th>
+        <th>KONU</th>
+        <th>MESAJ</th>
+        <th>TARİH</th>
+    </tr>
+    @foreach(var u in ViewData["SolvedContacts"] as List<Contact>)
+    {
+        <tr>
+            <td>@u.Id</td>
+            <td>@u.Name</td>
+            <td>@u.Phone</td>
+            <td>@u.Email</td>
+            <td>@u.Subject</td>
+            <td>@u.Message</td>
+            <td>@u.dateTime</td>
+        </tr>
+    }
+</table>
+
+

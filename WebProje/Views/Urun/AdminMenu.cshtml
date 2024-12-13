@@ -5,6 +5,8 @@
     var kategoriAdlari = ViewBag.KategoriAdlari as Dictionary<int, string>;
 }
 <br />
+<a href="/Urun/Ekle/" class="btn btn-info">Yeni Ürün</a>
+<br/><br/>
 <table class="table table-bordered">
     <tr>
         <th>GUID ID</th>
@@ -21,7 +23,9 @@
     {
         <tr>
             <td>@u.Id</td>
-            <td><img src="@u.ImageUrl" style="max-width: 200px; max-height: 200px" class="menu-item-image" /></td>
+            <td>
+                <img src="@u.ImageUrl" style="max-width: 200px; max-height: 200px" class="menu-item-image" alt=""/>
+            </td>
             <td>@u.Name</td>
             <td>@u.Description</td>
             <td>@u.Price</td>
@@ -40,4 +44,5 @@
         </tr>
     }
 </table>
-<a href="/Urun/Ekle/" class="btn btn-info">Yeni Ürün</a>
+
+

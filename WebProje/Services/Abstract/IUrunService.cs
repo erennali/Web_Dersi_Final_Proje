@@ -17,4 +17,6 @@ public interface IUrunService
     Task<Urun> Getir(Guid id);
     Task<List<SelectListItem>> KategoriDegerleri();
     Task<Dictionary<int, string>> KategoriDegerleri2();
+    List<Urun> GetUrunlerByKategori(int? kategoriId);
+    List<Urun> GetUrunlerByCategory(string categoryId = null);
 }
