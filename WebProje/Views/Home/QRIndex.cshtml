@@ -1,0 +1,57 @@
+@{
+    ViewBag.Title = "QR Restoran";
+    Layout = null;
+    Guid masaId = ViewBag.MasaId;
+}
+<title>QR Eren Ali Restoran</title>
+
+<!-- Arka plan resmi ekleniyor -->
+<div style="background-image: url('/images/restaurant.jpg'); background-size: cover; background-position: center; height: 100vh;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: white;">
+        <!-- Menüyü Gör Butonu -->
+        <a href="/Home/Menu/@masaId" style="text-decoration: none;">
+            <button class="custom-btn">Menüyü Gör</button>
+        </a>
+
+        <!-- Garson Çağır Butonu -->
+        <a href="@Url.Action("CallWaiter", "Restaurant")" style="text-decoration: none;">
+            <button class="custom-btn">Garson Çağır</button>
+        </a>
+
+        <!-- Hesap İste Butonu -->
+        <a href="@Url.Action("RequestBill", "Restaurant")" style="text-decoration: none;">
+            <button class="custom-btn">Hesap İste</button>
+        </a>
+    </div>
+</div>
+
+<style>
+    /* Buton stilini ayarlıyoruz */
+    .custom-btn {
+        margin: 10px;
+        padding: 12px 25px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background-color: #FF7043; /* gün batımı */
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .custom-btn:hover {
+        background-color: #FF5722; /* Hover rengi: biraz daha koyu l */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px); /* Hover ile buton yukarı kayar */
+    }
+
+    .custom-btn:active {
+        background-color: #D84315; /* Tıklama rengi */
+        transform: translateY(2px); /* Tıklama efekti */
+    }
+
+    .custom-btn:focus {
+        outline: none;
+    }
+</style>

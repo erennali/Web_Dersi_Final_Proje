@@ -28,14 +28,20 @@ public class HomeController : Controller
         return View();
     }
     
-    public IActionResult Menu(string selectedCategory)
+    
+    public IActionResult Menu(string selectedCategory,Guid MasaId)
     {
-        // Kategorileri al
+        //kategorileri cekme
         ViewData["Categories"] = new SelectList(_kategoriService.GetTumKategoriler(), "Id", "Ad");
 
-        // Ürünleri filtrele
+        // ürünleri kategorilere göre filtreleme
         var urunler = _urunService.GetUrunlerByCategory(selectedCategory);
         return View(urunler);
+    }
+    public IActionResult QRIndex(Guid id)
+    {
+        ViewBag.MasaId = id;
+        return View(id);
     }
 
     public IActionResult Privacy()

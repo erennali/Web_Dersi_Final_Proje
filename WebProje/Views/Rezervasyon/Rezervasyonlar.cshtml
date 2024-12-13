@@ -1,0 +1,56 @@
+@model IEnumerable<WebProje.Models.Rezervasyon>
+@{
+    ViewBag.Title = "title";
+    Layout = "AdminLayout";
+}
+
+<br/>
+<h3>ONAY BEKLEYEN REZERVASYONLAR</h3>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>AD SOYAD</th>
+        <th>TELEFON</th>
+        <th>E POSTA</th>
+        <th>KİŞİ SAYISI</th>
+        <th>ZAMAN</th>
+        <th>AKSİYON</th>
+    </tr>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.Name</td>
+            <td>@u.Phone</td>
+            <td>@u.Mail</td>
+            <td>@u.PersonCount</td>
+            <td>@u.Date</td>
+            <td>
+                <a href="/Rezervasyon/Success/@u.Id" class="btn btn-success">ONAYLA</a>
+            </td>
+
+        </tr>
+    }
+</table>
+
+<br/>
+<h3>ONAYLANAN REZERVASYONLAR</h3>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>AD SOYAD</th>
+        <th>TELEFON</th>
+        <th>E POSTA</th>
+        <th>KİŞİ SAYISI</th>
+        <th>ZAMAN</th>
+    </tr>
+    @foreach(var u in ViewData["SuccessRezervasyon"] as List<Rezervasyon>)
+    {
+        <tr>
+            <td>@u.Name</td>
+            <td>@u.Phone</td>
+            <td>@u.Mail</td>
+            <td>@u.PersonCount</td>
+            <td>@u.Date</td>
+        </tr>
+    }
+</table>

@@ -84,3 +84,15 @@ body {
   color: #e74c3c;
   font-weight: bold;
 }
+.restaurant-name {
+  color: #ffffff; /* Dikkat çekici bir sarı renk */
+  font-weight: bold; /* Kalın yazı */
+  font-size: 1.5rem; /* Daha büyük yazı */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Hafif gölge */
+  font-family: 'Arial', sans-serif; /* Özel yazı tipi */
+  transition: transform 0.3s ease-in-out;
+}
+
+.restaurant-name:hover {
+  transform: scale(1.1); /* Üzerine gelindiğinde büyüme efekti */
+}

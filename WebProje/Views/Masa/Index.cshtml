@@ -1,0 +1,28 @@
+@model IEnumerable<WebProje.Models.Masa>
+@{
+    ViewBag.Title = "Masalar";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<a href="/Masa/Ekle/" class="btn btn-info">Yeni Masa  </a>
+<br/><br/>
+<table class="table table-bordered">
+    <tr>
+        <th>GUID ID</th>
+        <th>MASA ADI</th>
+        <th>SİL</th>
+    </tr>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.Id</td>
+            <td>@u.Ad</td>
+            <td>
+                <a href="/Masa/Sil/@u.Id" class="btn btn-danger">Sil</a>
+            </td>
+
+        </tr>
+    }
+</table>
+
+

@@ -33,38 +33,48 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
         <div class="container">
-            <!-- Logo -->
-            <a class="navbar-brand fw-bold text-white" asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="/images/restaurant.jpg" alt="Restoran" height="40" class="me-2">
-                Eren Ali Restoran
-            </a>
-            <!-- Hamburger Menu (Mobile) -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
+
+
+            
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center fw-bold text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/images/restaurant.jpg" alt="Restoran" height="40" class="me-2 rounded-circle shadow-sm">
+                    <span class="ms-2 restaurant-name">Eren Ali Restoran</span>
+                </a>
+               
+
+
+
+
+
+
+
+
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                    <li class="nav-item" style="margin-right: 10px;">
+                        <a class="btn btn-light fw-bold px-4" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Menu">Menü</a>
+                    <li class="nav-item" style="margin-right: 10px;">
+                        <a class="btn btn-outline-light fw-bold px-4" asp-area="" asp-controller="Home" asp-action="Menu">Menü</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Contact" asp-action="Index">İletişim</a>
+                    <li class="nav-item" style="margin-right: 10px;">
+                        <a class="btn btn-light fw-bold px-4" asp-area="" asp-controller="Contact" asp-action="Index">İletişim</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Sepet">
+                    <li class="nav-item" style="margin-right: 10px;">
+                        <a class="btn btn-outline-light fw-bold px-4" asp-area="" asp-controller="Home" asp-action="Sepet">
                             <i class="fa fa-shopping-basket"></i> Sepet
                             <span class="badge badge-light">3</span> <!-- Sepetteki ürün sayısı -->
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light fw-bold px-4" asp-area="" asp-controller="Home" asp-action="Reservation">Rezervasyon</a>
+                    <li class="nav-item" style="margin-right: 10px;">
+                        <a class="btn btn-light fw-bold px-4" asp-area="" asp-controller="Rezervasyon" asp-action="Index">Rezervasyon</a>
                     </li>
                 </ul>
             </div>
+
         </div>
     </nav>
 </header>

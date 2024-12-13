@@ -36,6 +36,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUrunService, UrunService>();
 builder.Services.AddScoped<IKategoriService, KategoriService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IRezervasyonService, RezervasyonService>();
+builder.Services.AddScoped<IMailService, MailService>();
+builder.Services.AddScoped<IMasaService, MasaService>();
 
 var app = builder.Build();
 

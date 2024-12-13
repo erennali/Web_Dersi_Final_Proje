@@ -71,4 +71,10 @@ public class AdminController : Controller
         
         return View(admins);
     }
+
+    public async Task<IActionResult> LogOut()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Admin");
+    }
 }
