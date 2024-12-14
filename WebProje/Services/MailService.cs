@@ -11,7 +11,7 @@ public class MailService : IMailService
     {
         MimeMessage mimeMessage = new MimeMessage();
 
-        MailboxAddress mailboxAddressFrom = new MailboxAddress("Eren Ali Restoran", "erenalikoca2004@gmail.com");
+        MailboxAddress mailboxAddressFrom = new MailboxAddress("Eren Ali Restoran", "YOUR MAIL ADDRESS");
         mimeMessage.From.Add(mailboxAddressFrom);
 
         MailboxAddress mailboxAddressTo = new MailboxAddress("User", mail.ReceiverMail);
@@ -25,7 +25,7 @@ public class MailService : IMailService
 
         SmtpClient client = new SmtpClient();
         client.Connect("smtp.gmail.com", 587, false);
-        client.Authenticate("erenalikoca2004@gmail.com", "krcn ckex dfso slew");
+        client.Authenticate("YOUR MAIL ADDRESS", "YOUR KEY ");
 
         client.Send(mimeMessage);
         client.Disconnect(true);
@@ -35,7 +35,7 @@ public class MailService : IMailService
     {
         MimeMessage mimeMessage = new MimeMessage();
 
-        MailboxAddress mailboxAddressFrom = new MailboxAddress("Eren Ali Restoran Rezervasyon", "erenalikoca2004@gmail.com");
+        MailboxAddress mailboxAddressFrom = new MailboxAddress("Eren Ali Restoran Rezervasyon", "YOUR MAIL ADDRESS");
         mimeMessage.From.Add(mailboxAddressFrom);
 
         MailboxAddress mailboxAddressTo = new MailboxAddress("User", rezervasyon.Mail);
@@ -50,7 +50,7 @@ public class MailService : IMailService
 
         SmtpClient client = new SmtpClient();
         client.Connect("smtp.gmail.com", 587, false);
-        client.Authenticate("erenalikoca2004@gmail.com", "krcn ckex dfso slew");
+        client.Authenticate("YOUR MAIL ADDRESS", "YOUR KEY");
 
         client.Send(mimeMessage);
         client.Disconnect(true);
