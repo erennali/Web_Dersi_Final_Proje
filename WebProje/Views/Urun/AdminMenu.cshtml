@@ -7,7 +7,8 @@
 <br />
 <a href="/Urun/Ekle/" class="btn btn-info">Yeni Ürün</a>
 <br/><br/>
-<table class="table table-bordered">
+<table id="tbl1" class="table table-bordered">
+    <thead>
     <tr>
         <th>GUID ID</th>
         <th>GÖRSEL</th>
@@ -19,7 +20,8 @@
         <th>SİL</th>
         <th>GÜNCELLE</th>
     </tr>
-    @foreach(var u in Model)
+    </thead>
+    @foreach (var u in Model)
     {
         <tr>
             <td>@u.Id</td>
@@ -40,9 +42,31 @@
             <td>
                 <a href="/Urun/UrunGetir/@u.Id" class="btn btn-success">Güncelle</a>
             </td>
-                   
+
         </tr>
     }
 </table>
 
 
+<link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+@* <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"> *@
+@* <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+@* <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> *@
+
+<script>
+
+    $('#tbl1').dataTable({
+        language: { url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Turkish.json' }
+    });
+
+</script>

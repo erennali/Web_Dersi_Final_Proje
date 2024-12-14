@@ -42,6 +42,7 @@ public class HomeController : Controller
     {
         ViewBag.MasaId = id;
         return View(id);
+        //http://localhost:5159/Home/QRIndex/c9448087-2878-45eb-bbde-07ceac9fcc22 örnek kullanım Masa01
     }
 
     public IActionResult Privacy()
