@@ -3,6 +3,16 @@
     ViewBag.Title = "Rezervasyon";
     Layout = "_Layout";
 }
+@if (TempData["SweetAlertMesaj"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'Sonuç',
+            text: '@TempData["SweetAlertMesaj"]',
+            icon: '@(TempData["SweetAlertMesaj"].ToString().Contains("hata") ? "error" : "success")'
+        });
+    </script>
+}
 
 <br />
 <br />

@@ -1,7 +1,7 @@
 @model List<Urun>
 
 @{
-    Layout = "_Layout";  
+    Layout = "_Layout";
 }
 
 <div class="menu-container">
@@ -26,6 +26,8 @@
                     <h3>@item.Name</h3>
                     <p>@item.Description</p>
                     <span class="menu-item-price">@item.Price.ToString("C")</span>
+                    <br/>
+                    <button class="custom-btn" type="button">Sepete Ekle</button>
                 </div>
             </div>
         }

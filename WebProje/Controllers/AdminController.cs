@@ -6,6 +6,7 @@ using WebProje.Models;
 
 namespace WebProje.Controllers;
 
+
 [AllowAnonymous]
 public class AdminController : Controller
 {

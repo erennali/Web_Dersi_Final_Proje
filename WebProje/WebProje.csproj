@@ -12,11 +12,13 @@
       <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
       <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
       <PackageReference Include="SkiaSharp" Version="3.118.0-preview.2.3" />
     </ItemGroup>
@@ -98,12 +100,28 @@
       <_ContentIncludedByDefault Remove="Views\AdminRole\UserRoleList.cshtml" />
       <_ContentIncludedByDefault Remove="Web\package-lock.json" />
       <_ContentIncludedByDefault Remove="Web\package.json" />
+      <_ContentIncludedByDefault Remove="Views\Admin\GetAdmins.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Admin\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Admin\GetAdmins.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Admin\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
       <Reference Include="QRCoder">
         <HintPath>..\..\..\Downloads\QRCoder.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Areas\Admin\Controllers\" />
+      <Folder Include="Areas\Admin\Data\" />
+      <Folder Include="Areas\Admin\Models\" />
+      <Folder Include="Areas\Admin\Views\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Admin\GetAdmins.cshtml" />
+      <AdditionalFiles Include="Views\Admin\Index.cshtml" />
     </ItemGroup>
 
 </Project>

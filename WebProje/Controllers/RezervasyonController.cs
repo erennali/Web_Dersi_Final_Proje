@@ -22,9 +22,24 @@ public class RezervasyonController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(Rezervasyon rezervasyon)
     {
-        await _rezervasyonService.Ekle(rezervasyon);
+        if (ModelState.IsValid) 
+        {
+            try
+            {
+                await _rezervasyonService.Ekle(rezervasyon);
+                TempData["SweetAlertMesaj"] = "Rezervasyon Talebiniz Gonderildi!";
+            }
+            catch (Exception ex)
+            {
+                TempData["Mesaj"] = "Bir hata olustu: " + ex.Message;
+            }
+
+            return RedirectToAction("Index");  
+        }
+        return View(rezervasyon);
+        
                 
-        return RedirectToAction("Index","Home"); 
+        
     }
     
     [Authorize(Roles = "Admin")]

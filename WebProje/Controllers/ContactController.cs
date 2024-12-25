@@ -28,7 +28,7 @@ public class ContactController : Controller
             try
             {
                await _contactService.Ekle(contact);
-                TempData["Mesaj"] = "Form gonderildi";
+               TempData["SweetAlertMesaj"] = "Form basariyla gonderildi!";
             }
             catch (Exception ex)
             {

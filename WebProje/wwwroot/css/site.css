@@ -96,3 +96,16 @@ body {
 .restaurant-name:hover {
   transform: scale(1.1); /* Üzerine gelindiğinde büyüme efekti */
 }
+
+.custom-btn {
+  margin: 10px;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #FF7043; /* gün batımı */
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}

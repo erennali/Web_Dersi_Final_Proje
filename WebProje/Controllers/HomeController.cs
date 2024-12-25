@@ -29,7 +29,7 @@ public class HomeController : Controller
     }
     
     
-    public IActionResult Menu(string selectedCategory,Guid MasaId)
+    public IActionResult Menu(string selectedCategory)
     {
         //kategorileri cekme
         ViewData["Categories"] = new SelectList(_kategoriService.GetTumKategoriler(), "Id", "Ad");
@@ -38,6 +38,17 @@ public class HomeController : Controller
         var urunler = _urunService.GetUrunlerByCategory(selectedCategory);
         return View(urunler);
     }
+    public IActionResult QRMenu(string selectedCategory,Guid MasaId)
+    {
+        //kategorileri cekme
+        ViewData["Categories"] = new SelectList(_kategoriService.GetTumKategoriler(), "Id", "Ad");
+
+        // ürünleri kategorilere göre filtreleme
+        var urunler = _urunService.GetUrunlerByCategory(selectedCategory);
+        return View(urunler);
+    }
+    
+    
     public IActionResult QRIndex(Guid id)
     {
         ViewBag.MasaId = id;

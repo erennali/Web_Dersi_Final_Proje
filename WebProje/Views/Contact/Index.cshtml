@@ -3,10 +3,14 @@
     ViewBag.Title = "İletişim";
     Layout = "_Layout";
 }
-@if (TempData["Mesaj"] != null)
+@if (TempData["SweetAlertMesaj"] != null)
 {
     <script>
-        alert("@TempData["Mesaj"]");
+        Swal.fire({
+            title: 'Sonuç',
+            text: '@TempData["SweetAlertMesaj"]',
+            icon: '@(TempData["SweetAlertMesaj"].ToString().Contains("hata") ? "error" : "success")'
+        });
     </script>
 }
 
