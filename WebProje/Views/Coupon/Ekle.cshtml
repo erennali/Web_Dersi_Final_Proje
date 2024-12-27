@@ -1,0 +1,18 @@
+@model WebProje.Models.Coupon
+@{
+    ViewBag.Title = "Yeni Kupon";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Yeni Kupon Sayfası</h2>
+<br />
+<form class="form-group" method="post">
+    <br />
+    @Html.Label("KUPON KODU")
+    @Html.TextBoxFor(x => x.CouponCode, new { @class = "form-control" })
+    <br />
+    @Html.Label("İNDİRİM YÜZDESİ")
+    @Html.TextBoxFor(x => x.Discount, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Kaydet</button>
+</form>

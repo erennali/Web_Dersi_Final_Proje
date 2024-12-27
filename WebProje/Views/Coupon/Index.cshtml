@@ -1,0 +1,26 @@
+@model IEnumerable<WebProje.Models.Coupon>
+@{
+    ViewBag.Title = "KUPONLAR";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<a href="/Coupon/Ekle/" class="btn btn-info">Yeni Kupon  </a>
+<br/><br/>
+<table class="table table-bordered">
+    <tr>
+        <th>KUPON KODU</th>
+        <th>İNDİRİM YÜZDESİ</th>
+        <th>SİL</th>
+    </tr>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.CouponCode</td>
+            <td>@u.Discount</td>
+            <td>
+                <a href="/Coupon/Sil/@u.Id" class="btn btn-danger">Sil</a>
+            </td>
+
+        </tr>
+    }
+</table>

@@ -1,0 +1,60 @@
+@model IEnumerable<Basket>
+@{
+    var masaId = Context.Request.Query["masaId"]; // MasaId'yi URL'den alıyoruz
+}
+@if (TempData["SweetAlertMesaj"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'Sonuç',
+            text: '@TempData["SweetAlertMesaj"]',
+            icon: '@(TempData["SweetAlertMesaj"].ToString().Contains("Gecersiz kupon kodu!") ? "error" : "success")'
+        });
+    </script>
+}
+<h2>Sepetiniz</h2>
+<div class="contact-container" style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px;">
+    @if (Model != null && Model.Any())
+    {
+        <div class="menu-items" style="flex: 1;">
+            @foreach (var item in Model)
+            {
+                <div class="menu-item" style="flex: 1 1 calc(33.33% - 20px); box-sizing: border-box;">
+                    <div class="menu-item-info">
+                        <h3>@item.ProductName</h3>
+                        <p>@item.ProductDescription</p>
+                        <span class="menu-item-price">@item.ProductPrice.ToString("C")</span>
+                        <form method="post" asp-action="Sil" asp-controller="Basket">
+                            <input type="hidden" name="masaId" value="@masaId"/>
+                            <input type="hidden" name="productName" value="@item.ProductName"/>
+                            <button type="submit" class="custom-btn">Sil</button>
+                        </form>
+                        <br/>
+                    </div>
+                </div>
+            }
+        </div>
+
+  
+        <div class="coupon-container" style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+           
+            <form method="get" asp-action="GetSepet" asp-controller="Basket" style="display: flex; gap: 10px;">
+                <input type="text" name="couponCode" class="form-control" placeholder="Kupon Kodu" style="flex: 1;" />
+                
+                <input type="hidden" name="masaId" value="@masaId" />
+                
+                <button type="submit" class="custom-btn">Uygula</button>
+            </form>
+            <form method="post" asp-action="SiparisVer" asp-controller="Basket" style="display: flex; gap: 10px;">
+                <input type="hidden" name="masaId" value="@masaId"/>
+                <button type="submit" class="custom-btn">Sipariş Ver</button>
+            </form>
+        </div>
+
+        
+    }
+    else
+    {
+        <p>Sepetiniz boş.</p>
+    }
+</div>

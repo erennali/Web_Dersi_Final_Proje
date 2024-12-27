@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "Bildirimler";
+    Layout = "AdminLayout";
+}
+
+<h2>Canlı Bildirimler</h2>
+<ul id="notificationList"></ul>
+
+<!-- Bildirim Kutusu için Toast (Opsiyonel Modern Alert) -->
+<div id="toast" style="
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #323232;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+">
+    <span id="toastMessage"></span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.0/signalr.min.js"></script>
+<script>
+    // SignalR Bağlantısı
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/notificationHub")
+        .withAutomaticReconnect()
+        .build();
+
+    connection.start()
+        .then(() => {
+            console.log("SignalR bağlantısı kuruldu.");
+        })
+        .catch(err => console.error("SignalR bağlantı hatası: ", err.toString()));
+
+    // Bildirim Alındığında
+    connection.on("ReceiveNotification", (masaId, message) => {
+        const notificationList = document.getElementById("notificationList");
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `${message}`;
+        notificationList.appendChild(listItem);
+
+        // Alert Göster
+        alert(`📢 Yeni Bildirim: ${message}`);
+
+        // Toast (Modern Bildirim) Göster
+        showToast(message);
+    });
+
+    // Toast Bildirimi Fonksiyonu
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        toastMessage.innerText = message;
+        toast.style.display = 'block';
+
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 5000); // 5 saniye sonra kaybolur
+    }
+</script>
+
+<style>
+    #notificationList {
+        list-style: none;
+        padding: 0;
+    }
+
+    #notificationList li {
+        margin: 5px 0;
+        padding: 10px;
+        background: #f4f4f4;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>

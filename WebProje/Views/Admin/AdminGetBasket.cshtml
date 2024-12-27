@@ -1,0 +1,37 @@
+@model IEnumerable<WebProje.Models.Basket>
+@{
+    ViewBag.Title = "title";
+    Layout = "AdminLayout";
+}
+
+<br/>
+<h3>BEKLEYEN SİPARİŞLER</h3>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>MASA ID</th>
+        <th>ÜRÜN</th>
+        <th>AÇIKLAMA</th>
+        <th>FİYAT</th>
+        <th>AKSİYON</th>
+    </tr>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.Masa?.Ad</td>
+            <td>@u.ProductName</td>
+            <td>@u.ProductDescription</td>
+            <td>@u.ProductPrice</td>
+            <td>
+                <form method="post" asp-action="AdminBasketSil" asp-controller="Admin">
+                    <!-- Masa ID ve ürün adı gönderiliyor -->
+                    <input type="hidden" name="masaId" value="@u.Masa.Id" />
+                    <input type="hidden" name="productName" value="@u.ProductName" />
+
+                    <button  class="btn btn-success">TAMAMLANDI</button>
+                </form>
+             </td>
+
+        </tr>
+    }
+</table>

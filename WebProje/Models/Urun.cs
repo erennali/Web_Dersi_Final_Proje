@@ -14,4 +14,5 @@ public class Urun
 
     [ForeignKey("KategoriId")]
     public Kategori KategoriFk { get; set; }
+    
 }

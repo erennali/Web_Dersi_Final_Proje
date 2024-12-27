@@ -5,25 +5,69 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.0/signalr.min.js"></script>
+<style>
+    /* Toast Bildirim Stili */
+    #toast {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #323232;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+    }
+</style>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Restoran Admin Paneli</title>
-    <link href="/Web/dist/css/styles.css" rel="stylesheet" />
+    <link href="/Web/dist/css/styles.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-    
+
 </head>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/notificationHub")
+        .withAutomaticReconnect()
+        .build();
+
+    connection.start().then(() => {
+        console.log("SignalR bağlantısı kuruldu.");
+    }).catch(err => console.error("SignalR bağlantı hatası:", err));
+
+    connection.on("ReceiveNotification", (masaId, message) => {
+        console.log(`Yeni Bildirim: ${message}`);
+        alert(`📢 Yeni Bildirim: ${message}`);
+        showToast(message);
+    });
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        toastMessage.innerText = message;
+        toast.style.display = 'block';
+
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 5000);
+    }
+</script>
 <body>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="/Urun/AdminMenu">Admin Paneli</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
+    <a class="navbar-brand" href="/Urun/AdminMenu">Admin Paneli</a>
+    <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button><!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-            <input class="form-control" type="text" placeholder="Aranacak kelimeyi girin..." aria-label="Search" aria-describedby="basic-addon2" />
+            <input class="form-control" type="text" placeholder="Aranacak kelimeyi girin..." aria-label="Search" aria-describedby="basic-addon2"/>
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
             </div>
@@ -50,6 +94,10 @@
                     <a class="nav-link" href="/Home/Index">
                         <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
                         Siteye Git
+                    </a>
+                    <a class="nav-link" href="/Admin/AdminGetBasket">
+                        <div class="sb-nav-link-icon"><i class="fas fa-shopping-basket"></i></div>
+                        Siparişler
                     </a>
                     <a class="nav-link" href="/Kategori/Index">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -82,10 +130,7 @@
                     <a class="nav-link" href="/Register/UserRegister/">
                         <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
                         Kullanıcı Kayıt
-                     </a>
-                   
-
-                    <div class="sb-sidenav-menu-heading">Rapor & Fatura</div>
+                    </a>
                     <a class="nav-link" href="/QRCode/Index/">
                         <div class="sb-nav-link-icon"><i class="fas fa-qrcode"></i></div>
                         QR Kod Oluşturma
@@ -98,9 +143,9 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Masa İşlemleri
                     </a>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
-                        Giderler
+                    <a class="nav-link" href="/Coupon/Index">
+                        <div class="sb-nav-link-icon"><i class="fas fa-arrow-down"></i></div>
+                        Kupon İşlemleri
                     </a>
                     <a class="nav-link" href="/Urun/UrunListesi">
                         <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
@@ -146,6 +191,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/Web/dist/js/scripts.js"></script>
 </body>
+<div id="toast">
+    <span id="toastMessage"></span>
+</div>
 </html>
 
 

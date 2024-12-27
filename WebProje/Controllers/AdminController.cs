@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebProje.EfCore;
 using WebProje.Models;
+using WebProje.Services.Abstract;
 
 namespace WebProje.Controllers;
 
@@ -13,11 +15,15 @@ public class AdminController : Controller
     
     private readonly SignInManager<AppUser> _signInManager;
     private readonly UserManager<AppUser> _userManager;
+    private readonly IBasketService _basketService;
+    private readonly WebDbContext _context;
 
-    public AdminController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+    public AdminController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IBasketService basketService, WebDbContext context)
     {
         _signInManager = signInManager;
         _userManager = userManager;
+        _basketService = basketService;
+        _context = context;
     }
 
     // GET
@@ -44,7 +50,7 @@ public class AdminController : Controller
             //kullanıcı admin rolündeyse, Admin sayfasına yönlendir
             if (roles.Contains("Admin"))
             {
-                return RedirectToAction("AdminMenu", "Urun");
+                return RedirectToAction("AdminGetBasket", "Admin");
             }
             else
             {
@@ -78,4 +84,36 @@ public class AdminController : Controller
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Admin");
     }
+
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> AdminGetBasket()
+    {
+        var tumOrder = await _basketService.GetTumOrder();
+        var baskets =  _basketService.GetTumOrder();
+
+        ViewBag.BasketsWithMasaAdi = baskets;
+
+        return View(tumOrder);
+    }
+    
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
+    public IActionResult AdminBasketSil(Guid masaId, string productName)
+    {
+        var basketItem = _context.Baskets
+            .FirstOrDefault(b => b.MasaId == masaId && b.ProductName == productName);
+
+        if (basketItem != null)
+        {
+            _context.Baskets.Remove(basketItem);  
+            _context.SaveChanges();  
+        }
+        
+        return RedirectToAction("AdminGetBasket");
+    }
+    public IActionResult Notifications()
+    {
+        return View();
+    }
+    
 }

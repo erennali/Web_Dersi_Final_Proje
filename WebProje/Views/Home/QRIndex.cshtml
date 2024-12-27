@@ -1,27 +1,26 @@
 @{
     ViewBag.Title = "QR Restoran";
     Layout = null;
-    Guid masaId = ViewBag.MasaId;
+
+    // ViewBag'den masaId değerini çek ve boşsa varsayılan bir Guid ata
+    Guid masaId = ViewBag.MasaId != null ? (Guid)ViewBag.MasaId : Guid.Empty;
 }
 <title>QR Eren Ali Restoran</title>
 
-<!-- Arka plan resmi ekleniyor -->
+<!-- Arka plan resmi -->
 <div style="background-image: url('/images/restaurant.jpg'); background-size: cover; background-position: center; height: 100vh;">
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: white;">
+
         <!-- Menüyü Gör Butonu -->
-        <a href="/Home/QRMenu/@masaId" style="text-decoration: none;">
+        <a href="@Url.Action("QRMenu", "Home", new { masaId = masaId })" style="text-decoration: none;">
             <button class="custom-btn">Menüyü Gör</button>
         </a>
 
         <!-- Garson Çağır Butonu -->
-        <a href="@Url.Action("CallWaiter", "Restaurant")" style="text-decoration: none;">
-            <button class="custom-btn">Garson Çağır</button>
-        </a>
+        <button class="custom-btn" onclick="callWaiter('@masaId')">Garson Çağır</button>
 
         <!-- Hesap İste Butonu -->
-        <a href="@Url.Action("RequestBill", "Restaurant")" style="text-decoration: none;">
-            <button class="custom-btn">Hesap İste</button>
-        </a>
+        <button class="custom-btn" onclick="requestBill('@masaId')">Hesap İste</button>
     </div>
 </div>
 
@@ -41,7 +40,7 @@
     }
 
     .custom-btn:hover {
-        background-color: #FF5722; /* Hover rengi: biraz daha koyu l */
+        background-color: #FF5722; /* Hover rengi: biraz daha koyu turuncu */
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         transform: translateY(-3px); /* Hover ile buton yukarı kayar */
     }
@@ -55,3 +54,40 @@
         outline: none;
     }
 </style>
+
+<script>
+    // Garson Çağır Butonu
+    function callWaiter(masaId) {
+        fetch(`/Home/CallWaiter?masaId=${masaId}`, {
+            method: 'GET'
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Garson çağrıldı!');
+            } else {
+                alert('Garson çağrılırken bir hata oluştu!');
+            }
+        })
+        .catch(error => {
+            console.error('Hata:', error);
+            alert('Garson çağrılırken bir hata oluştu!');
+        });
+    }
+    // hesap iste Butonu
+    function requestBill(masaId) {
+        fetch(`/Home/RequestBill/?masaId=${masaId}`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Hesap istendi!');
+                } else {
+                    alert('Hesap istenirken bir hata oluştu!');
+                }
+            })
+            .catch(error => {
+                console.error('Hata:', error);
+                alert('Hesap istenirken bir hata oluştu!');
+            });
+    }
+</script>

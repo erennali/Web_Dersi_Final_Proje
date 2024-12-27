@@ -2,9 +2,14 @@
 
 @{
     Layout = "_Layout";
+    var masaId = Context.Request.Query["masaId"]; // URL'den masaId çekiliyor
 }
 
 <div class="menu-container">
+    <button class="custom-btn"
+            onclick="window.location.href='@Url.Action("GetSepet", "Basket", new { masaId = Context.Request.Query["masaId"] })'">
+        Sepete Git
+    </button>
     <h1>Menü</h1>
 
     <!-- Kategori Seçimi -->
@@ -21,13 +26,16 @@
         @foreach (var item in Model)
         {
             <div class="menu-item">
-                <img src="@item.ImageUrl" alt="@item.Name" class="menu-item-image" />
+                <img src="@item.ImageUrl" alt="@item.Name" class="menu-item-image"/>
                 <div class="menu-item-info">
                     <h3>@item.Name</h3>
                     <p>@item.Description</p>
                     <span class="menu-item-price">@item.Price.ToString("C")</span>
                     <br/>
-                    <button class="custom-btn" type="button">Sepete Ekle</button>
+                    <button class="custom-btn" type="button"
+                            onclick="sepeteEkle('@masaId', '@item.Name', '@item.Description', @item.Price)">
+                        Sepete Ekle
+                    </button>
                 </div>
             </div>
         }
@@ -35,8 +43,58 @@
 </div>
 
 <script>
+    // Kategoriye göre filtreleme
     function filterByCategory(categoryId) {
-        const url = categoryId ? `@Url.Action("Menu", "Home")?selectedCategory=${categoryId}` : `@Url.Action("Menu", "Home")`;
+        const masaId = '@ViewData["masaId"]'; // URL'den alınan masaId değeri kullanılıyor
+        const url = categoryId
+            ? `@Url.Action("QRMenu", "Home")?masaId=${masaId}&selectedCategory=${categoryId}`
+            : `@Url.Action("QRMenu", "Home")?masaId=${masaId}`;
         window.location.href = url;
     }
+
+    // Sepete ürün ekleme
+    function sepeteEkle(masaId, productName, productDescription, productPrice) {
+        fetch('@Url.Action("SepeteEkle", "Basket")', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                masaId: masaId,
+                productName: productName,
+                productDescription: productDescription,
+                productPrice: productPrice
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Sunucu hatası');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    // Sepeti güncelle
+                } else {
+                    alert("Bir hata oluştu: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Hata:', error);
+                alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+            });
+    }
 </script>
+
+<style>
+
+    .custom-btn {
+        background-color: #FF7043;
+        color: white;
+    }
+
+    .custom-btn:hover {
+        background-color: #FF5722;
+    }
+</style>
