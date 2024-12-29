@@ -13,9 +13,10 @@
         <h1 class="display-4 fw-bold">Hoş Geldiniz!</h1>
         <p class="lead">Eren Ali Restoran'da lezzetli yemekler ve unutulmaz anlar sizi bekliyor. Keşfedin!</p>
         <div class="mt-4">
-            <a class="btn btn-light btn-lg mx-3" asp-controller="Home" asp-action="Rezervasyon">Rezervasyon</a>
-            <a class="btn btn-light btn-lg mx-3" asp-controller="Home" asp-action="Menu">Menü</a>
+            <custom-link controller="Rezervasyon" action="Index" text="Rezervasyon"></custom-link>
+            <custom-link controller="Home" action="Menu" text="Menü"></custom-link>
         </div>
+
     </div>
 </div>
 

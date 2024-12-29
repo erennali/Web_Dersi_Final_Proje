@@ -146,3 +146,33 @@ body {
   display: flex;
   justify-content: center; /* butonu ortalar */
 }
+.reservation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px; /* Bölümler arasında boşluk */
+  padding: 20px 150px;
+}
+
+.reservation-form {
+  flex: 1;
+  max-width: 50%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.reservation-info {
+  flex: 1;
+  max-width: 40%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.reservation-form h1,
+.reservation-info h6 {
+  text-align: center;
+}
