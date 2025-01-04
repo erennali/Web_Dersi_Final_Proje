@@ -9,6 +9,7 @@
     <ItemGroup>
       <PackageReference Include="jQuery" Version="3.7.1" />
       <PackageReference Include="jquery.datatables" Version="1.10.15" />
+      <PackageReference Include="jQuery.Validation" Version="1.21.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
@@ -20,6 +21,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="4.0.0" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
       <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
       <PackageReference Include="SkiaSharp" Version="3.118.0-preview.2.3" />
@@ -118,7 +120,6 @@
       <Folder Include="Areas\Admin\Controllers\" />
       <Folder Include="Areas\Admin\Data\" />
       <Folder Include="Areas\Admin\Models\" />
-      <Folder Include="Areas\Admin\Views\" />
     </ItemGroup>
 
     <ItemGroup>

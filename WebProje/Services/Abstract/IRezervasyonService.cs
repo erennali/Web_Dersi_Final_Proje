@@ -11,4 +11,5 @@ public interface IRezervasyonService
     Task Ekle(Rezervasyon rezervasyon);
     
     Task Success(Rezervasyon rezervasyon);
+    IQueryable<Rezervasyon> GetSuccessRezervasyonQuery();
 }

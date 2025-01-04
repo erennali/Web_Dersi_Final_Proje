@@ -22,7 +22,6 @@
 <br />
 
 <div class="reservation-container">
-    <!-- Sol Taraf: Rezervasyon Formu -->
     <div class="reservation-form">
         <form class="form-group" method="post">
             <br />
@@ -48,8 +47,6 @@
             <button class="btn btn-primary">Rezervasyon Talebi Oluştur</button>
         </form>
     </div>
-
-    <!-- Sağ Taraf: Bilgilendirme -->
     <div class="reservation-info">
         <br />
         <h6>
@@ -59,3 +56,8 @@
         </h6>
     </div>
 </div>
+
+@section scripts
+{
+    @await Html.PartialAsync("_validationscriptspartial")
+}

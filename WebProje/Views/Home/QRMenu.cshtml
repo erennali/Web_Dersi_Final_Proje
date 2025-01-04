@@ -1,6 +1,7 @@
 @model List<Urun>
 
 @{
+    ViewData["Title"] = "QR Menü";
     Layout = "_Layout";
     var masaId = Context.Request.Query["masaId"]; // URL'den masaId çekiliyor
 }

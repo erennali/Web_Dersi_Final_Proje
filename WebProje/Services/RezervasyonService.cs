@@ -44,4 +44,8 @@ public class RezervasyonService : IRezervasyonService
         await _context.SaveChangesAsync();
         _mailService.RezervasyonMailGonder(seciliRezerv);
     }
+    public IQueryable<Rezervasyon> GetSuccessRezervasyonQuery()
+    {
+        return _context.Rezervasyonlar.Where(x => x.Durum == false).AsNoTracking();
+    }
 }

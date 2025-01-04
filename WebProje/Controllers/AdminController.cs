@@ -9,7 +9,7 @@ using WebProje.Services.Abstract;
 namespace WebProje.Controllers;
 
 
-[AllowAnonymous]
+//[AllowAnonymous]
 public class AdminController : Controller
 {
     
@@ -41,13 +41,11 @@ public class AdminController : Controller
         //ilk false = kullanıcı hatırlansın mı ; ikinci false da kullanıcı şifreyi yanlış girdikçe değer artsın mı db de
         if (result.Succeeded)
         {
-            // Kullanıcıyı al
             var user = await _userManager.FindByNameAsync(login.Username);
-
-            // Kullanıcının rollerini al
+            // kullanıcının rolü
             var roles = await _userManager.GetRolesAsync(user);
 
-            //kullanıcı admin rolündeyse, Admin sayfasına yönlendir
+            //kullanıcı admin rolündeyse
             if (roles.Contains("Admin"))
             {
                 return RedirectToAction("AdminGetBasket", "Admin");

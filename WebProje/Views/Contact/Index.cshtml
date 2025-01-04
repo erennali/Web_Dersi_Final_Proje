@@ -59,3 +59,8 @@
         </form>
     </div>
 </div>
+@* client side validation*@
+@section scripts
+{
+    @await Html.PartialAsync("_validationscriptspartial")
+}

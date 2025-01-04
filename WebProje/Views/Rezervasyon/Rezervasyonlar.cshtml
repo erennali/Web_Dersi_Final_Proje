@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "title";
     Layout = "AdminLayout";
+    var successModel = ViewData["SuccessRezervasyon"] as PaginatedList<Rezervasyon>;
+
 }
 
 <br/>
@@ -43,7 +45,7 @@
         <th>KİŞİ SAYISI</th>
         <th>ZAMAN</th>
     </tr>
-    @foreach(var u in ViewData["SuccessRezervasyon"] as List<Rezervasyon>)
+    @foreach(var u in successModel.Items)
     {
         <tr>
             <td>@u.Name</td>
@@ -54,3 +56,30 @@
         </tr>
     }
 </table>
+
+<nav>
+    <ul class="pagination">
+        @* eğer öncesinde syafa varsa 'Önceki' butonu oluşturur *@
+        @if (successModel.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Rezervasyonlar", new { pageNumber = successModel.PageNumber - 1 })">Önceki</a>
+            </li>
+        }
+        @* toplam sayfa sayısı kadar buton koyma *@
+        @for (int i = 1; i <= successModel.TotalPages; i++)
+        {
+            <li class="page-item @(i == successModel.PageNumber ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Rezervasyonlar", new { pageNumber = i })">@i</a>
+            </li>
+        }
+
+        @* eğer sonrasında syafa varsa 'Sonraki' butonu oluşturur *@
+        @if (successModel.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Rezervasyonlar", new { pageNumber = successModel.PageNumber + 1 })">Sonraki</a>
+            </li>
+        }
+    </ul>
+</nav>

@@ -18,7 +18,6 @@ public class UrunService : IUrunService
     public async Task<List<Urun>> GetTumUrunler()
     {
         return await _webDbContext.Uruns
-            //.Where(x=> x.Aktiflik)
             .ToListAsync();
     }
 

@@ -23,6 +23,7 @@ public class ContactController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(Contact contact)
     {
+        //server side validation
         if (ModelState.IsValid) 
         {
             try

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebProje.Models;
 using WebProje.Services.Abstract;
 
@@ -22,6 +23,7 @@ public class RezervasyonController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(Rezervasyon rezervasyon)
     {
+        //server side validation
         if (ModelState.IsValid) 
         {
             try
@@ -43,11 +45,24 @@ public class RezervasyonController : Controller
     }
     
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Rezervasyonlar()
+    public async Task<IActionResult> Rezervasyonlar( int pageNumber = 1)
     {
         var contacts = await _rezervasyonService.GetTumRezervasyon();
-        var successRezervasyon = await _rezervasyonService.GetSuccessRezervasyon();
-        ViewData["SuccessRezervasyon"] = successRezervasyon;
+        //var successRezervasyon = await _rezervasyonService.GetSuccessRezervasyon();
+        //bu server side pagination kullanmadan önceydi
+        const int pageSize = 3;
+        var successQuery = _rezervasyonService.GetSuccessRezervasyonQuery(); // IQueryable dönen yeni method
+
+        //tek sayfada 3 adet olacak şekilde sayfalama yaptık ,onaylanan rezervasyonlarda 3 yeterli geldi
+        var totalItems = await successQuery.CountAsync();
+        var successItems = await successQuery
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        var paginatedSuccess = new PaginatedList<Rezervasyon>(successItems, totalItems, pageNumber, pageSize);
+        ViewData["SuccessRezervasyon"] = paginatedSuccess;
+        //ViewData["SuccessRezervasyon"] = successRezervasyon;
 
         return View(contacts);
     }

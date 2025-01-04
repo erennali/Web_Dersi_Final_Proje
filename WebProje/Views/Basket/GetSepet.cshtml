@@ -1,5 +1,6 @@
 @model IEnumerable<Basket>
 @{
+    ViewData["Title"] = "QR Sepet";
     var masaId = Context.Request.Query["masaId"]; // MasaId'yi URL'den alıyoruz
 }
 @if (TempData["SweetAlertMesaj"] != null)
