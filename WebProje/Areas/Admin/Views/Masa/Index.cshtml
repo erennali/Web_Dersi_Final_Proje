@@ -1,10 +1,10 @@
 @model IEnumerable<WebProje.Models.Masa>
 @{
     ViewBag.Title = "Masalar";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<a href="/Masa/Ekle/" class="btn btn-info">Yeni Masa  </a>
+<a href="/Admin/Masa/Ekle/" class="btn btn-info">Yeni Masa  </a>
 <br/><br/>
 <table class="table table-bordered">
     <tr>
@@ -18,7 +18,7 @@
             <td>@u.Id</td>
             <td>@u.Ad</td>
             <td>
-                <a href="/Masa/Sil/@u.Id" class="btn btn-danger">Sil</a>
+                <a href="/Admin/Masa/Sil/@u.Id" class="btn btn-danger">Sil</a>
             </td>
 
         </tr>

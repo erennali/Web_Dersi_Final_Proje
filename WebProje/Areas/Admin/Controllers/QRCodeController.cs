@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using QRCoder;
 using SkiaSharp;
 
-namespace WebProje.Controllers
+namespace WebProje.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class QRCodeController : Controller
     {

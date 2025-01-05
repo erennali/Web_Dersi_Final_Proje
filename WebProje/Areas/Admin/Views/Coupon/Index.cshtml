@@ -1,10 +1,10 @@
 @model IEnumerable<WebProje.Models.Coupon>
 @{
     ViewBag.Title = "KUPONLAR";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<a href="/Coupon/Ekle/" class="btn btn-info">Yeni Kupon  </a>
+<a href="/Admin/Coupon/Ekle/" class="btn btn-info">Yeni Kupon  </a>
 <br/><br/>
 <table class="table table-bordered">
     <tr>
@@ -18,7 +18,7 @@
             <td>@u.CouponCode</td>
             <td>@u.Discount</td>
             <td>
-                <a href="/Coupon/Sil/@u.Id" class="btn btn-danger">Sil</a>
+                <a href="/Admin/Coupon/Sil/@u.Id" class="btn btn-danger">Sil</a>
             </td>
 
         </tr>

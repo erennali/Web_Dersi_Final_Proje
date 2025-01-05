@@ -62,21 +62,39 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
 
-// Ana route yapılandırması
+// app.MapControllerRoute(
+//     name: "default",
+//     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
+
+app.MapControllerRoute(
+    name: "qrmenu",
+    pattern: "Home/QRMenu/{MasaId:guid}",
+    defaults: new { controller = "Home", action = "QRMenu" }
+);
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-// Endpoint yapılandırması
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "qrmenu",
-        pattern: "Home/QRMenu/{MasaId:guid}",
-        defaults: new { controller = "Home", action = "QRMenu" });
-
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllerRoute(
+//         name: "areas",
+//         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+//     );
+//     
+//     endpoints.MapControllerRoute(
+//         name: "qrmenu",
+//         pattern: "Home/QRMenu/{MasaId:guid}",
+//         defaults: new { controller = "Home", action = "QRMenu" });
+//
+//     endpoints.MapControllerRoute(
+//         name: "default",
+//         pattern: "{controller=Home}/{action=Index}/{id?}");
+// });
 app.Run();

@@ -12,6 +12,7 @@
       <PackageReference Include="jQuery.Validation" Version="1.21.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
@@ -117,12 +118,23 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Admin\Controllers\" />
       <Folder Include="Areas\Admin\Data\" />
       <Folder Include="Areas\Admin\Models\" />
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\Coupon\Ekle.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Coupon\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Kategori\Ekle.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Kategori\Guncelle.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Kategori\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Mail\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Masa\Ekle.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Masa\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\QRCode\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Urun\AdminMenu.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Urun\Ekle.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Urun\UrunGetir.cshtml" />
       <AdditionalFiles Include="Views\Admin\GetAdmins.cshtml" />
       <AdditionalFiles Include="Views\Admin\Index.cshtml" />
     </ItemGroup>

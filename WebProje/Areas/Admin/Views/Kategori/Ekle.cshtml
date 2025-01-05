@@ -2,12 +2,12 @@
 
 @{
     ViewBag.Title = "title";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
 <h1>Kategori ekleme sayfası</h1>
 
-<form asp-action="Ekle" asp-controller="Kategori" method="post">
+<form asp-action="Ekle" asp-controller="Kategori" asp-area="Admin" method="post">
     <label asp-for="Ad"></label>
     <input type="text" class="form-control" asp-for="Ad" />
     <br />

@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using WebProje.Models;
 using WebProje.Services.Abstract;
 
-namespace WebProje.Controllers;
+namespace WebProje.Areas.Admin.Controllers;
 
+[Area("Admin")]
 [Authorize(Roles = "Admin")]
 public class CouponController : Controller
 {
@@ -30,11 +31,11 @@ public class CouponController : Controller
     public async Task<IActionResult> Ekle(Coupon coupon)
     {
         await _couponService.Ekle(coupon);
-        return RedirectToAction(nameof(Index));
+        return Redirect("/Admin/Coupon/Index");
     }
     public async Task<IActionResult> Sil(int id)
     {
         await _couponService.Sil(id);
-        return RedirectToAction(nameof(Index));
+        return Redirect("/Admin/Coupon/Index");
     }
 }

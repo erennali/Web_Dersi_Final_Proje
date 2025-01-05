@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using WebProje.Models;
 using WebProje.Services.Abstract;
 
-namespace WebProje.Controllers;
+namespace WebProje.Areas.Admin.Controllers;
+
+[Area("Admin")]
 [Authorize(Roles = "Admin")]
 public class MailController : Controller
 {

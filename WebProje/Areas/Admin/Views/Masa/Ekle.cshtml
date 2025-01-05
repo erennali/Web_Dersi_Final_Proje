@@ -1,12 +1,12 @@
 @model WebProje.Models.Masa
 @{
     ViewBag.Title = "Yeni Masa";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 <br />
 <h2>Yeni Masa Sayfası</h2>
 <br />
-<form class="form-group" method="post">
+<form class="form-group" asp-area="Admin" method="post">
     <br />
     @Html.Label("Ad")
     @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })

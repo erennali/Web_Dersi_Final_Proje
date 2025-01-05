@@ -1,0 +1,29 @@
+@model List<Kategori>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<h1>Kategoriler</h1>
+
+<a class="btn btn-primary" href="/Admin/Kategori/Ekle">Yeni Kategori Ekle</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Ad</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var kategori in Model)
+    {
+        <tr>
+            <td>@kategori.Ad</td>
+            <td>
+                <a class="btn btn-warning" href="/Admin/Kategori/Guncelle/@kategori.Id">Güncelle</a>
+                <a class="btn btn-danger" href="/Admin/Kategori/Sil/@kategori.Id">Sil</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

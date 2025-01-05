@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using WebProje.Models;
 using WebProje.Services.Abstract;
 
-namespace WebProje.Controllers;
+namespace WebProje.Areas.Admin.Controllers;
 
+[Area("Admin")]
 [Authorize(Roles = "Admin")]
 public class KategoriController : Controller
 {
@@ -31,7 +32,7 @@ public class KategoriController : Controller
     {
         _kategoriService.Ekle(input);
 
-        return RedirectToAction("Index");
+        return Redirect("/Admin/Kategori/Index/");
     }
 
 
@@ -47,14 +48,14 @@ public class KategoriController : Controller
     {
         _kategoriService.Guncelle(input);
 
-        return RedirectToAction("Index");
+        return Redirect("/Admin/Kategori/Index/");
     }
 
     public  IActionResult Sil(int id)
     {
         _kategoriService.Sil(id);
 
-        return RedirectToAction(nameof(Index));
+        return Redirect("/Admin/Kategori/Index/");
     }
 
     [HttpPost, ActionName("Sil")]
@@ -62,6 +63,6 @@ public class KategoriController : Controller
     {
         _kategoriService.Sil(id);
 
-        return RedirectToAction(nameof(Index));
+        return Redirect("/Admin/Kategori/Index/");
     }
 }
